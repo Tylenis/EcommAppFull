@@ -11,6 +11,7 @@ jobs:
       - image: "cimg/base:stable"
     steps:
       - node/install:
+          node-version: 14.17.1
           install-yarn: true
       - aws-cli/setup
       - checkout
