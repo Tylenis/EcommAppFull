@@ -1,0 +1,83 @@
+<form #userdataform="ngForm" *ngIf="cart; else elseBlock">
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputName" [ngClass]="{'text-success': nameinput.valid}">First Name</label>
+            <input type="text" class="form-control red" id="inputName" [(ngModel)]="name" #nameinput="ngModel" name="name" required minlength="2">
+            <div class="invalid-input" *ngIf="nameinput.invalid && nameinput.touched">
+                Please provide your first name.
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputSecondName" [ngClass]="{'text-success': secondnameinput.valid}">Second Name</label>
+            <input type="text" class="form-control" id="inputSecondName" [(ngModel)]="secondName" #secondnameinput="ngModel" name="secondname" required minlength="2">
+            <div class="invalid-input" *ngIf="secondnameinput.invalid && secondnameinput.touched">
+                Please provide your second name.
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputEmail" [ngClass]="{'text-success': emailinput.valid}">Email</label>
+            <input type="email" class="form-control" id="inputEmail" [(ngModel)]="email" #emailinput="ngModel" name="email" required email>
+            <div class="invalid-input" *ngIf="emailinput.invalid && emailinput.touched">
+                Please provide your email.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputAddress" [ngClass]="{'text-success': adressinput.valid}">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" [(ngModel)]="adress" #adressinput="ngModel" name="adress" required minlength="3">
+        <div class="invalid-input" *ngIf="adressinput.invalid && adressinput.touched">
+            Please provide your address.
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCity" [ngClass]="{'text-success': cityinput.valid}">City</label>
+            <input type="text" class="form-control" id="inputCity" [(ngModel)]="city" #cityinput="ngModel" name="city" required>
+            <div class="invalid-input" *ngIf="cityinput.invalid && cityinput.touched">
+                Please provide city.
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState" [ngClass]="{'text-success': stateinput.valid}">State</label>
+            <!-- <input type="text" class="form-control" id="inputState" [(ngModel)]="state" #stateinput="ngModel" name="state" required minlength="4"> -->
+            <input type="text" class="form-control" id="inputState" [ngModel]="state"  (ngModelChange)= "state=$event" #stateinput="ngModel" name="state" required minlength="4">
+            <div class="invalid-input" *ngIf="stateinput.invalid && stateinput.touched">
+                Please provide state.
+            </div>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputZip" [ngClass]="{'text-success': zipinput.valid}">Zip</label>
+            <input type="text" class="form-control" id="inputZip" [(ngModel)]="zip" #zipinput="ngModel" name="zip" required pattern="\d+"> 
+            <div class="invalid-input" *ngIf="zipinput.invalid && zipinput.touched">
+                Please provide zip code. Only numbers are allowed.
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h4 class="mb-3 font-weight-bold text-primary">Pay with:</h4>
+    <div class="form-check form-check-inline">
+        <label class="form-check-label mr-2" for="inlineRadio1"><h5 [ngClass]="{'text-success': paywith == 'creditcard'}">Credit Card</h5></label>
+        <input class="form-check-input" type="radio" name="paywith" id="inlineRadio1" [(ngModel)]="paywith" value="creditcard" required>
+    </div>
+    <div class="form-check form-check-inline">
+        <label class="form-check-label mr-2" for="inlineRadio2"><h5 [ngClass]="{'text-success': paywith == 'paypal'}">PayPal</h5></label>
+        <input class="form-check-input" type="radio" name="paywith" id="inlineRadio2" [(ngModel)]="paywith" value="paypal" required>
+    </div>
+    <hr>
+    <button class="btn btn-danger m-2" (click)="onBack()">Back</button>
+    <button type="submit" class="btn btn-primary m-2" (click)="onSubmitOrder(userdataform, content)" [disabled]="userdataform.invalid" ngbTooltip="Please fill all input fields to complete order" [disableTooltip]="!userdataform.invalid">Order</button>
+</form>
+
+<ng-template #content let-modal>
+    <div class="modal-header text-center">
+      <h4 class="modal-title text-success text-center" id="modal-basic-title">Order placed successfully! <fa-icon [icon]="checkCircle"></fa-icon></h4>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="modal.close('Ok click')">Ok</button>
+    </div>
+</ng-template>
+
+<ng-template #elseBlock>
+    <h2 class="text-secondary"><fa-icon [icon]="shoppingCart"></fa-icon></h2>
+    <h4>Your cart is empty.</h4>
+</ng-template>

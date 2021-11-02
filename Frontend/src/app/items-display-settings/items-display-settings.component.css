@@ -1,0 +1,6 @@
+.no-bullets {
+    list-style-type: none;
+}
+.dropdown-item-cursor {
+    cursor: pointer;
+}

@@ -1,0 +1,11 @@
+@media screen and (max-width: 400px) { 
+    tbody {
+        font-size: 12px;
+    }
+    thead {
+        font-size: 12px;
+    }
+    tfoot {
+        font-size: 12px;
+    }
+ }

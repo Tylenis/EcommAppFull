@@ -1,0 +1,9 @@
+{
+    "scripts": {
+        "frontend:install": "cd Frontend && npm install",
+        "backend:install": "cd Backend && npm install",
+        "frontend:build": "cd Frontend && npm run build",
+        "backend:build": "cd Backend && npm run build",
+        "frontend:deploy": "cd Frontend && chmod +x ./bin/deploy.sh && ./bin/deploy.sh"
+    }
+}

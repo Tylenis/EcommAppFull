@@ -1,0 +1,20 @@
+.startt {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+   -moz-transition: opacity 1s ease-in-out;
+   -webkit-transition: opacity 1s ease-in-out;
+
+}
+
+.entrance {
+    opacity: 1;
+}
+
+.image-custom {
+    height: 290px;
+    object-fit: contain;
+}
+
+.custom-height {
+    min-height: 500px;
+}

@@ -1,0 +1,17 @@
+<div class="container">
+    <app-items-display-settings [dataSize] = "(allItems | categoriesPipe: selectedCategory).length" (itemsSortDir)="sortItems($event)" (itemsFilterCat)="filterItems($event)" (currentPage)="onPageChange($event)"></app-items-display-settings>
+</div>
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 custom-height">
+        <div class="col mb-4 startt" *ngFor="let item of (allItems | categoriesPipe: selectedCategory | sortItems: sortDirection | slice: dataStart : dataEnd)" #cardDiv>
+            <a class="card text-white text-decoration-none" style="height: 100%;" [routerLink]="['/itemdetail', item.id]">
+                <img [src]="item.image" class="card-img-top image-custom" alt="item image" (load) = "cardDiv.classList.add('entrance')">
+                <div class="card-body" style="background-color: black;">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <h4 class="card-text text-right"> <span class="badge badge-secondary">Price: {{item.price |currency: "EUR"}}</span></h4>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,51 @@
+<ul class="nav text-white justify-content-between mt-5 mb-3">
+    <li>
+        <ul class="d-inline-flex pl-0 no-bullets">
+            <li ngbDropdown>
+                <p class="nav-link dropdown-item-cursor" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>Categories</p>
+                <div ngbDropdownMenu>
+                    <p class="m-0 dropdown-item-cursor" ngbDropdownItem (click)="emitFilterItems('all')">All</p>
+                    <div class="dropdown-divider"></div>
+                    <p class="m-0 dropdown-item-cursor" ngbDropdownItem *ngFor="let category of categories" (click)="emitFilterItems(category)">{{category}}</p>
+                </div>
+            </li>
+            <li ngbDropdown>
+                <p class="nav-link dropdown-item-cursor" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>Sort By</p>
+                <div ngbDropdownMenu>
+                    <p class="m-0 dropdown-item-cursor" ngbDropdownItem (click)="sortItemsSelected('asc')">price ascending</p>
+                    <p class="m-0 dropdown-item-cursor" ngbDropdownItem (click)="sortItemsSelected('desc')">price descending</p>
+                </div>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <ngb-pagination [collectionSize]="dataSize" [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChanged($event)">
+            <ng-template ngbPaginationPages let-page let-pages="pages">
+                <li class="ngb-custom-pages-item" *ngIf="pages.length > 0">
+                    <div class="form-group d-flex flex-nowrap px-2">
+                      <label
+                          id="paginationInputLabel"
+                          for="paginationInput"
+                          class="col-form-label mr-2 ml-1"
+                      >Page</label>
+                      <input #i
+                          type="text"
+                          inputmode="numeric"
+                          pattern="[0-9]*"
+                          class="form-control custom-pages-input"
+                          id="paginationInput"
+                          [value]="page"
+                          (keyup.enter)="selectPage(i.value)"
+                          (blur)="selectPage(i.value)"
+                          (input)="formatInput($any($event).target)"
+                          aria-labelledby="paginationInputLabel paginationDescription"
+                          style="width: 2.5rem"
+                      />
+                      <span id="paginationDescription" class="col-form-label text-nowrap px-2">
+                          of {{pages.length}}</span>
+                    </div>
+                </li>
+            </ng-template>
+        </ngb-pagination>
+    </li>
+</ul>

@@ -1,0 +1,12 @@
+###### both Frontend and Backend
+# dependencies
+node_modules
+
+# production
+build
+
+# misc
+products.json
+
+.env
+

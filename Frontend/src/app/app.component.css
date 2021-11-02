@@ -1,0 +1,9 @@
+.page-footer {
+    border-top: 3px solid white;
+}
+.main-view {
+    min-height: 65vh;
+}
+.my-footer-headline {
+    text-decoration: underline;
+}

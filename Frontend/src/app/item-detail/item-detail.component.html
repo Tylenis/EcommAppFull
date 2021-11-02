@@ -1,0 +1,55 @@
+<div class="container custom-height" *ngIf="loaded">
+    <div class="card my-5 ">
+        <div class="row no-gutters" *ngIf="item; else elseBlock">
+        <div class="col-md-4">
+            <img [src]="item.image" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+            <h4 class="card-title font-weight-bold">{{item.title}}</h4>
+            <p class="card-text mt-4">{{item.description}}</p>
+            <h5 class="font-weight-bold">Price: {{item.price |currency: "EUR"}}</h5>
+
+            <form class="form-inline mt-5" #form="ngForm">
+                <button class="btn btn-secondary font-weight-bold" (click)="removeUnit()">-</button>
+                <input type="text" class="form-control mx-2 text-center" [(ngModel)]="qty" style="width: 50px;" #qtyinput="ngModel" name="qty" required>
+                <button class="btn btn-secondary font-weight-bold" (click)="addUnit()">+</button>
+            </form>
+
+            <button type="button" class="btn btn-outline-success btn-lg mt-5"
+             (click)="open(content, item)" [disabled]="qty==0" placement="top" ngbTooltip="You must select quantity first!" [disableTooltip]="qty!==0">Add to cart</button>
+
+            </div>
+        </div>
+        </div>
+
+        <ng-template #elseBlock>
+            <h2 class="text-secondary text-center mt-5"><fa-icon [icon]="timesCircle"></fa-icon></h2>
+            <h4 class="text-center mb-5">Item does not exist.</h4>
+        </ng-template>
+
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Added to Cart</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body"  *ngIf="item">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5">
+                    <img [src]="item.image" class="img-fluid" alt="Responsive image">
+                </div>
+                <div class="col-md-6 ml-auto"><h5>{{item.title}}</h5></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Continue shopping</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close('Ok click')">View cart & Checkout</button>
+    </div>
+  </ng-template>
