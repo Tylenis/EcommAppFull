@@ -7,8 +7,12 @@ import productRouter from './routes/productRouter';
 import orderRouter from './routes/orderRouter';
 
 const app = express();
-dotenv.config();
-const port = process.env.SERVER_PORT;
+
+if (process.env.ENV !== 'production') {
+    dotenv.config();
+}
+
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

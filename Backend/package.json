@@ -9,13 +9,16 @@
     "eslint": "eslint src/**/*.ts",
     "jasmine": "jasmine",
     "prettier": "prettier --config .prettierrc.json src/**/*.ts --write",
-    "start": "nodemon src/index.ts",
-    "testW": "db-migrate --env test down && set ENV=test&& db-migrate --env test up && npm run build && npm run jasmine && db-migrate --env test down",
-    "test": "db-migrate --env test down && db-migrate --env test up && npm run build && ENV=test npm run jasmine && db-migrate --env test down"
+    "start": "cd build && node index.js",
+    "windowstest": "db-migrate --env test down && set ENV=test&& db-migrate --env test up && npm run build && npm run jasmine && db-migrate --env test down",
+    "linuxtest": "db-migrate --env test down && db-migrate --env test up && npm run build && ENV=test npm run jasmine && db-migrate --env test down"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "14.17.1"
+  },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/chai": "^4.2.20",
