@@ -1,5 +1,2 @@
-pwd
-ls
-zip back.zip package.json
-ls
-read
+zip back.zip package.json -r build
+echo Done
