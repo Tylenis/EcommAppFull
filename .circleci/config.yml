@@ -19,10 +19,6 @@ jobs:
       - checkout
       # install dependencies in both apps
       - run:
-          name: EB version
-          command: |
-            eb --version
-      - run:
           name: Front-End Install
           command: |
             npm run frontend:install
