@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get('/', (req, res): void => {
-    res.json('Storefront API');
+    res.json('Storefront API v2');
 });
 
 app.use('/user', userRouter);
