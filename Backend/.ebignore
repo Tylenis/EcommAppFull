@@ -1,0 +1,13 @@
+bin
+node_modules
+migrations
+spec
+src
+.env
+.eslintrc.json
+prettierrc.json
+database.json
+package-lock.json
+tsconfig.json
+README.md
+REQUIREMENTS.md

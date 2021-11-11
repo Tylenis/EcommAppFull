@@ -1,2 +1,3 @@
-zip back.zip package.json -r build
-echo Done
+echo Deploing...
+eb deploy
+echo All Done!
